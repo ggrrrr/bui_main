@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  bui-main:
+    image: bui-main:latest
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - /Users/vesko/coding/toni/bui2/local/data/bui-main:/usr/share/nginx/html/json
+ 
