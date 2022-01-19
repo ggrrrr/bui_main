@@ -69,9 +69,9 @@
             {{ eco.text }}
           </a>
         </v-row>
-        <v-row justify="center">
-          <div v-for="(eco, i) in errors" :key="i">{{ eco }} asd</div>
-        </v-row>
+        <!-- <v-row justify="center"> -->
+        <!-- <div v-for="(eco, i) in errors" :key="i">{{ eco }} asd</div> -->
+        <!-- </v-row> -->
       </v-col>
     </v-row>
   </v-container>
