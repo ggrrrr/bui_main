@@ -45,6 +45,13 @@ const actions = {
       message: null,
     });
   },
+  parseAlert(store, alert) {
+    store.commit("SET_MESSAGE", {
+      type: alert.type,
+      error: alert.error,
+      message: alert.message,
+    });
+  },
   parseAxiosError(store, err) {
     console.log("parseAxiosError:");
     console.log(err);

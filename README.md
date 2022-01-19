@@ -156,6 +156,6 @@ apt-cache madison docker-ce
 
 sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
 
-
+?error_code=1349187&error_message=Insecure%20Login%20Blocked%3A%20You%20can%27t%20get%20an%20access%20token%20or%20log%20in%20to%20this%20app%20from%20an%20insecure%20page.%20Try%20re-loading%20the%20page%20as%20https%3A%2F%2F#_=_
 
 ```
