@@ -18,14 +18,15 @@ export default {
     if (this.$route.query.error_code) {
       let error_code = this.$route.query.error_code;
       console.log("error_code", error_code);
-      console.log("this.$route", this.$route.query.error_message);
-      console.log("this.$route", this.$route.query);
+      console.log("error_code this.$route", this.$route.query.error_message);
+      console.log("error_code this.$route", this.$route.query);
 
       this.$store.dispatch("parseAlert", {
         type: "error",
         error: "" + error_code + " - " + this.$route.query.error_message,
         message: "OAuth error",
       });
+      this.$router.push("/login");
     } else {
       let code = this.$route.query.code;
       let state = this.$route.query.state;
@@ -34,7 +35,7 @@ export default {
 
       console.log("this.$route.query.state", state);
       console.log("this.$route.query.code", code);
-      console.log("this.$route.query.code", stateProvider);
+      console.log("this.$route.query.stateProvider", stateProvider);
       console.log("baseURL", this.$store.getters.baseURL);
       axios
         .post(this.$store.getters.baseURL + "/auth/login/oauth2", {

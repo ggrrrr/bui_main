@@ -35,6 +35,9 @@
           <v-list-item to="/calendar">
             <v-list-item-title>calendar</v-list-item-title>
           </v-list-item>
+          <v-list-item to="/auth/requests">
+            <v-list-item-title>AuthRequests</v-list-item-title>
+          </v-list-item>
 
           <v-list-item>
             <v-list-item-title>Bar</v-list-item-title>

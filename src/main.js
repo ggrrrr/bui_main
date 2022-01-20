@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
-
+import moment from "moment";
 Vue.config.productionTip = false;
 
 axios
@@ -14,6 +14,11 @@ axios
     store.commit("SET_BASE_URL", response.data);
     console.log("main loadConfig.done.");
 
+    Vue.filter("formatDate", function (value) {
+      if (value) {
+        return moment(value).format("lll");
+      }
+    });
     new Vue({
       router,
       store,

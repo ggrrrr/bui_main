@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="kur">
+  <v-container fluid>
     <v-overlay name="progress" :value="overlay">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
@@ -92,7 +92,7 @@ export default {
     console.log("login asdasd asd asd asd asd asd mounted");
   },
   computed: {
-    ...mapGetters(["auth"]),
+    ...mapGetters(["pageItems"]),
   },
   methods: {
     oauthLogin(provider) {

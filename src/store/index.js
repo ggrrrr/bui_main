@@ -7,6 +7,7 @@ Vue.use(Vuex);
 const state = {
   config: null,
   allErrors: [],
+  pageItems: [],
 
   message: { type: null, message: null, error: null, icon: null },
   auth: {
@@ -28,9 +29,14 @@ const getters = {
     return !state.auth.token;
   },
   oauth2: (state) => state.config.oauth2,
+  pageItems: (state) => state.pageItems,
 };
 
 const actions = {
+  setPageItems(store, items) {
+    console.log("SET_PAGE_ITEMS", items);
+    store.commit("SET_PAGE_ITEMS", items);
+  },
   alertOk(store, message) {
     store.commit("SET_MESSAGE", {
       type: "success",
@@ -120,6 +126,9 @@ const actions = {
 };
 
 const mutations = {
+  SET_PAGE_ITEMS(state, items) {
+    state.pageItems = items;
+  },
   SET_MESSAGE(state, message) {
     console.log("SET_MESSAGE: ", message);
     message.icon = null;

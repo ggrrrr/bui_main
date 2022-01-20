@@ -5,6 +5,8 @@ import Login from "../views/auth/Login.vue";
 import Callback from "../views/auth/Callback.vue";
 import Password from "../views/me/Password.vue";
 import Calendar from "../views/events/Calendar.vue";
+import AuthRequests from "../views/auth/AuthRequests.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -23,6 +25,12 @@ const routes = [
     name: "Login",
     component: Login,
   },
+  {
+    path: "/auth/requests",
+    name: "AuthRequests",
+    component: AuthRequests,
+  },
+
   {
     path: "/calendar",
     name: "Calendar",
