@@ -89,29 +89,36 @@ export default {
         })
         .then((resp) => {
           let items = [];
-          for (let i = 0; i < resp.data.length; i++) {
-            let item1 = resp.data[i];
-            console.log("/auth/request/list", item1);
-            let pic = item1.attr.picture;
-            let names = item1.attr.name;
-            let created = new Date(`${item1.created_time}`);
-            // let created = moment(String(item1.created_time)).format(
-            // "MM/DD/YYYY hh:mm"
-            // );
-            let item = {
-              email: item1.email,
-              avatar: pic,
-              names: names,
-              provider: item1.attr.provider,
-              created: created,
-            };
-            console.log("/auth/request/list", item);
-            // this.items[i] = item;
-            items[i] = item;
+          console.log("/auth/request/list", resp.data.payload);
+          if (!resp.data.payload) {
+            console.log("payload empty");
+            return;
           }
-          console.log("/auth/request/list", items);
-          // this.items;
-          this.$store.dispatch("setPageItems", items);
+          if (resp.data.payload.length) {
+            for (let i = 0; i < resp.data.payload.length; i++) {
+              let item1 = resp.data.payload[i];
+              console.log("/auth/request/list", item1);
+              let pic = item1.attr.picture;
+              let names = item1.attr.name;
+              let created = new Date(`${item1.created_time}`);
+              // let created = moment(String(item1.created_time)).format(
+              // "MM/DD/YYYY hh:mm"
+              // );
+              let item = {
+                email: item1.email,
+                avatar: pic,
+                names: names,
+                provider: item1.attr.provider,
+                created: created,
+              };
+              console.log("/auth/request/list", item);
+              // this.items[i] = item;
+              items[i] = item;
+            }
+            console.log("/auth/request/list", items);
+            // this.items;
+            this.$store.dispatch("setPageItems", items);
+          }
         })
         .catch((e) => {
           // this.overlay = false;

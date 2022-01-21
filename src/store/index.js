@@ -117,7 +117,7 @@ const actions = {
   },
   userLogin(store, payload) {
     console.log("store login ok", payload);
-    store.commit("SET_AUTH", payload);
+    store.commit("SET_AUTH", payload.payload);
   },
   userLogout(store) {
     console.log("userLogout");
