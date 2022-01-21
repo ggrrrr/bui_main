@@ -26,31 +26,21 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute left temporary>
-      <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-1"
-        >
-          <v-list-item to="/calendar">
-            <v-list-item-title>calendar</v-list-item-title>
-          </v-list-item>
-          <v-list-item to="/auth/requests">
-            <v-list-item-title>AuthRequests</v-list-item-title>
-          </v-list-item>
+    <v-navigation-drawer v-model="drawer" absolute clipped left>
+      <v-list subheader>
+        <v-subheader inset>Folders</v-subheader>
+        <v-list-item to="/calendar">
+          <v-list-item-action><v-icon>mdi-calendar</v-icon></v-list-item-action>
+          <v-list-item-title>calendar</v-list-item-title>
+        </v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
+        <v-subheader inset>Admin</v-subheader>
+        <v-list-item to="/auth/requests">
+          <v-list-item-action
+            ><v-icon>mdi-account-alert</v-icon></v-list-item-action
+          >
+          <v-list-item-title>AuthRequests</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </div>

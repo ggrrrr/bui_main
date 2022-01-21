@@ -12,10 +12,11 @@
 
             <v-list-item-subtitle>
               <v-row>
-                <v-col class="col-3">{{ item.created | formatDate }}</v-col>
-                <v-col class="">{{ item.email }}</v-col>
-                <v-col class="col-1"><v-icon>mdi-at</v-icon></v-col>
+                <v-col class="col-3">{{ item.email }}</v-col>
                 <v-col class="col-2">{{ item.provider }}</v-col>
+                <v-col class="d-flex flex-nowrap">{{
+                  item.created | formatDate
+                }}</v-col>
               </v-row>
             </v-list-item-subtitle>
           </v-list-item-content>
