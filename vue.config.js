@@ -1,5 +1,5 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
 };
-// const { gitDescribe, gitDescribeSync } = require("git-describe");
-process.env.VUE_APP_GIT_HASH = "__app__ver__";
+process.env.VUE_APP_HASH = "_hash_";
+process.env.VUE_APP_DATE = "_date_";

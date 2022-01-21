@@ -9,7 +9,9 @@
       <!-- <v-card-text small tile class="subheading" width="100%"> -->
       <!-- <v-icon color="green" small>mdi-vuejs</v-icon> -->
       <!-- <v-row> -->
-      <v-col class="subheading text-left">{{ version }}</v-col>
+      <v-col class="subheading text-left"
+        >{{ build_hash }}.{{ build_date }}</v-col
+      >
       <!-- <v-col></v-col> -->
       <v-col class="subheading text-right">
         <v-btn
@@ -52,7 +54,8 @@ export default {
     console.log("App.started");
   },
   data: () => ({
-    version: process.env.VUE_APP_GIT_HASH,
+    build_hash: process.env.VUE_APP_HASH,
+    build_date: process.env.VUE_APP_DATE,
   }),
 };
 </script>
