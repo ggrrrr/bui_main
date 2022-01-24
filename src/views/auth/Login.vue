@@ -147,7 +147,7 @@ export default {
         .catch((e) => {
           this.overlay = false;
           this.$store.dispatch("parseAxiosError", e);
-          this.$store.dispatch("userLogout");
+          // this.$store.dispatch("userLogout");
         })
         .finally();
     },

@@ -8,7 +8,6 @@ const state = {
   config: null,
   allErrors: [],
   pageItems: [],
-
   message: { type: null, message: null, error: null, icon: null },
   auth: {
     error: { type: null, error: null, message: null },
@@ -33,9 +32,9 @@ const getters = {
 };
 
 const actions = {
-  setPageItems(store, items) {
-    console.log("SET_PAGE_ITEMS", items);
-    store.commit("SET_PAGE_ITEMS", items);
+  setPageItems(store, payload) {
+    console.log("SET_PAGE_ITEMS", payload.target, payload.items);
+    store.commit("SET_PAGE_ITEMS", payload);
   },
   alertOk(store, message) {
     store.commit("SET_MESSAGE", {
@@ -61,59 +60,54 @@ const actions = {
   parseAxiosError(store, err) {
     console.log("parseAxiosError:");
     console.log(err);
-    if (err.response) {
-      console.log(err.response);
-      let response = err.response;
-      if (response.data) {
-        let data = response.data;
-        if (data.code > 499) {
-          store.commit("SET_MESSAGE", {
-            type: "error",
-            error: data.error,
-            message: data.message,
-          });
-        } else if (data.code === 400) {
-          store.commit("SET_MESSAGE", {
-            type: "warning",
-            error: data.error,
-            message: data.message,
-          });
-        } else if (data.code === 401) {
-          store.commit("CLEAR_AUTH");
-
-          store.commit("SET_MESSAGE", {
-            type: "warning",
-            error: data.error,
-            message: data.message,
-          });
-        } else if (data.code === 404) {
-          store.commit("SET_MESSAGE", {
-            type: "error",
-            error: data.error,
-            message: data.message,
-          });
-        } else {
-          store.commit("SET_MESSAGE", {
-            type: "error",
-            error: data.error,
-            message: data.message,
-          });
-        }
-      } else {
-        store.commit("SET_MESSAGE", {
-          type: "error",
-          error: "transport",
-          message: response,
-        });
-      }
-    } else {
-      console.log("axios: ", err);
+    if (!err.response) {
+      console.log("axios resposne is null: ", err);
       store.commit("SET_MESSAGE", {
         type: "error",
         error: "Please try again later",
         message: err.message,
       });
+      return;
     }
+    const response = err.response;
+    if (!response.data) {
+      console.log("axios resposne data is null: ", err);
+      store.commit("SET_MESSAGE", {
+        type: "error",
+        error: "transport",
+        message: response,
+      });
+      return;
+    }
+    console.log("parseAxiosError:data:", data);
+    // console.log(err);
+
+    const data = response.data;
+    const httpStatus = response.status;
+    let errorType = "error";
+    let errorMessage = response;
+    let error = "unkown";
+    if (data.error) {
+      error = data.error;
+    }
+    if (data.message) {
+      errorMessage = data.message;
+    }
+    if (httpStatus > 499) {
+      errorType = "error";
+    } else if (httpStatus === 400) {
+      errorType = "warning";
+    } else if (httpStatus === 401) {
+      errorType = "warning";
+      store.commit("CLEAR_AUTH");
+    } else if (response.status === 404) {
+      errorType = "error";
+    }
+    store.commit("SET_MESSAGE", {
+      type: errorType,
+      error: error,
+      message: errorMessage,
+    });
   },
   userLogin(store, payload) {
     console.log("store login ok", payload);
@@ -126,8 +120,10 @@ const actions = {
 };
 
 const mutations = {
-  SET_PAGE_ITEMS(state, items) {
-    state.pageItems = items;
+  SET_PAGE_ITEMS(state, peyload) {
+    console.log("mutations.pageItems", peyload.target);
+    console.log("mutations.pageItems", peyload.items);
+    state.pageItems[peyload.target] = peyload.items;
   },
   SET_MESSAGE(state, message) {
     console.log("SET_MESSAGE: ", message);

@@ -6,10 +6,17 @@ import Callback from "../views/auth/Callback.vue";
 import Password from "../views/me/Password.vue";
 import Calendar from "../views/events/Calendar.vue";
 import AuthRequests from "../views/auth/AuthRequests.vue";
-
+import Users from "../views/auth/Users.vue";
+import List from "../views/people/List.vue";
+import ListVue from "../components/people/List.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/p/list",
+    name: "ListVue",
+    component: ListVue,
+  },
   {
     path: "/",
     name: "Home",
@@ -30,6 +37,11 @@ const routes = [
     name: "AuthRequests",
     component: AuthRequests,
   },
+  {
+    path: "/users/list",
+    name: "Users",
+    component: Users,
+  },
 
   {
     path: "/calendar",
@@ -40,6 +52,11 @@ const routes = [
     path: "/me/password",
     name: "Security",
     component: Password,
+  },
+  {
+    path: "/people",
+    name: "People",
+    component: List,
   },
   {
     path: "/about",

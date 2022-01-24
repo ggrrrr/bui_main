@@ -16,8 +16,8 @@
 
       <LoginInfo v-if="!isLoggedIn" />
       <v-btn
-        text
         v-if="!isLoggedIn"
+        text
         outlined
         class="ml-2 rounded-l-xl"
         @click="logout()"
@@ -29,17 +29,30 @@
     <v-navigation-drawer v-model="drawer" absolute clipped left>
       <v-list subheader>
         <v-subheader inset>Folders</v-subheader>
-        <v-list-item to="/calendar">
+        <v-list-item @click="drawer = !drawer" to="/people">
+          <v-list-item-action
+            ><v-icon>mdi-account-group-outline</v-icon></v-list-item-action
+          >
+          <v-list-item-title>People</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="drawer = !drawer" to="/calendar">
           <v-list-item-action><v-icon>mdi-calendar</v-icon></v-list-item-action>
           <v-list-item-title>calendar</v-list-item-title>
         </v-list-item>
+      </v-list>
+      <v-list>
+        <v-divider></v-divider>
 
         <v-subheader inset>Admin</v-subheader>
-        <v-list-item to="/auth/requests">
+        <v-list-item @click="drawer = !drawer" to="/auth/requests">
           <v-list-item-action
             ><v-icon>mdi-account-alert</v-icon></v-list-item-action
           >
           <v-list-item-title>AuthRequests</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="drawer = !drawer" to="/users/list">
+          <v-list-item-action><v-icon>mdi-tools</v-icon></v-list-item-action>
+          <v-list-item-title>Users</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

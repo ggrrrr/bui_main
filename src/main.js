@@ -16,6 +16,11 @@ axios
 
     Vue.filter("formatDate", function (value) {
       if (value) {
+        return moment(value).format("ll");
+      }
+    });
+    Vue.filter("formatDateTime", function (value) {
+      if (value) {
         return moment(value).format("lll");
       }
     });
