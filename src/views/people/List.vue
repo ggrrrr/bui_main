@@ -435,7 +435,7 @@ export default {
 
     insertPerson() {
       const item = this.newPerson;
-      console.log("fetchData:" + this.$store.getters.baseURL);
+      console.log("insertPerson:" + this.newPerson);
       const headers = {
         Authorization: "Bearer " + this.$store.getters.auth.token,
       };
